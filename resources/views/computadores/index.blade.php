@@ -2,7 +2,7 @@
 
 @section('content')
     <div>
-        <a name="" id="" class="btn btn-primary" href="{{ route('form') }}" role="button">Agregar Comutador</a>
+        <a class="btn btn-primary" href="computers/create" role="button">Agregar Comutador</a>
     </div>
 
     <table class="table table-striped">
@@ -24,11 +24,11 @@
         
         <tbody>
         @foreach ($computers as $item)
-        <tr>
+        <tr><a href="{{route('computer-edit')}}">
             <th class="id">
                 {{$item->id}}
             </th>
-            <!--<th>
+            <th>
                 {{$item->oficina}}
             </th>
             <th>
@@ -61,17 +61,27 @@
             <th class="comentario">
                 {{$item->comentarios}}
             </th>
-
+            </a>
         </tr>
-    -->
+    
             
         @endforeach
         </tbody>
     </table>
+    
 
     <style>
         .id{
             width: 5%;
         }
+        svg{
+          
+            font-size: 20px;
+            width: 40px;
+        }
+        tbody tr:hover{
+            background-color: #f5f5f5;
+        }
+
     </style>
 @endsection

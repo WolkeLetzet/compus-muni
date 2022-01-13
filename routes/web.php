@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ComputerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,7 +14,21 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::resource('/','App\HTTP\Controllers\ComputerController');
-Route::get('/form', function () {
+Route::view('/', 'welcome');
+Route::resource('computers', 'App\Http\Controllers\ComputerController');
+
+Route::get('computers/create', [ComputerController::class,'create'])->name('computer-create');
+
+Route::get('computers/edit', 'ComputerController@uptdate')->name('computer-edit');
+
+/*Route::get('/index',function(){
+    return view('computadores.index');
+
+} )->name('index');
+*/
+
+/*Route::get('/form', function () {
     return view('computadores.create');
 })->name('form');
+*/
+

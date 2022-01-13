@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Computer;
+use Illuminate\Support\Facades\DB;
 
 class ComputerController extends Controller
 {
@@ -12,12 +13,14 @@ class ComputerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
+    public function index(){
 
+        /*$computers = DB::table('computers')->paginate(30);
+        return view('computadores.index')->with('computers', $computers);
+        */
         $computers = Computer::all();
         return view('computadores.index')->with('computers', $computers);
+
     }
 
     /**
@@ -28,7 +31,7 @@ class ComputerController extends Controller
     public function create()
     {
         //
-        
+        return view('computadores.create');
 
     }
 
@@ -41,6 +44,19 @@ class ComputerController extends Controller
     public function store(Request $request)
     {
         //
+        $computer = new Computer();
+        $computer->oficina = $request->get('oficina');
+        $computer->responsable= $request->get('responsable');
+        $computer->fecha= $request->get('fecha');
+        $computer->marca = $request->get('marca');
+        $computer->modelo = $request->get('modelo');
+        $computer->ram = $request->get('ram');
+        $computer->almacenamiento = $request->get('almacenamiento');
+        $computer->so = $request->get('so');
+        $computer->comentarios = $request->get('comentarios');
+        $computer->tipo_uso= $request->get('tipo_uso');
+        $computer->save();
+        return redirect('computers');
     }
 
     /**
@@ -75,6 +91,7 @@ class ComputerController extends Controller
     public function update(Request $request, $id)
     {
         //
+        return view('computadores.edit');
     }
 
     /**

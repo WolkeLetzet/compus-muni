@@ -15,7 +15,7 @@ class Temp extends Migration
     {
         //
         Schema::create('computers', function (Blueprint $table) {
-            $table->string('id');
+            $table->increments('id');
             $table->string('oficina');
             $table->string('responsable');
             $table->string('tipo_uso');
@@ -25,7 +25,7 @@ class Temp extends Migration
             $table->string('ram');
             $table->string('almacenamiento');
             $table->string('SO');
-            $table->string('comentarios');
+            $table->string('comentarios')->nullable();
             
             
             $table->timestamps();
@@ -40,6 +40,6 @@ class Temp extends Migration
     public function down()
     {
         //
-        //Schema::dropIfExists('temp');
+        Schema::dropIfExists('computers');
     }
 }
